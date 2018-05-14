@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.1)
+project(socl)
+message("project source dir: ${PROJECT_SOURCE_DIR}")
+set(CMAKE_CXX_FLAGS "-std=c++11")
+
+set(OCL_DRIVERS "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v8.0")
+set(OCL_INC_DIR "${OCL_DRIVERS}/include")
+set(OCL_LIBS "${OCL_DRIVERS}/libs/x64")
+
+
+#下面是一些CMake的编程语法 set用的最多，就是设置变量 类似于 +=
+set(SRC ./ocl_init.cpp ./ocl_init.h)
+
+#添加到头文件
+include_directories( ${OCL_INC_DIR} )
+
+#附加库目录
+link_directories(${OCL_LIBS})
+
+#使用SRC_LIST中的文件生成可执行文件hello
+add_library(ocl_init STATIC ${SRC})
+
+#附加依赖项
+target_link_libraries(ocl_init OpenCL.lib)
