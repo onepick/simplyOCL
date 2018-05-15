@@ -5,7 +5,7 @@
 #include <CL/cl.h>
 #include <map>
 
-#include "ocl_init.h"
+#include "socl.h"
 
 int socl::cl_init(std::string kernel_file_path)
 {

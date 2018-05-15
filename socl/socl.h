@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <assert.h>
+#include <map>
 
 #include <CL/cl.hpp>
 
@@ -55,8 +56,14 @@ private:
 	std::string ReadSourceFromFile(std::string filePath);
 	cl_int SaveBinFile(const char * const fileName, const char * const binary);
 
-	template <typename T, typename ...Types>
-	void kernel_op(cl::Kernel kernel, int idx, T arg0, Types... args)
+	template <typename T0>
+	void kernel_op(cl::Kernel kernel, int idx, T0 arg0)
+	{
+		OCL_CHECK_KERNEL(kernel.setArg(idx, arg0), idx);
+	}
+
+	template <typename T0, typename ...Types>
+	void kernel_op(cl::Kernel kernel, int idx, T0 arg0, Types... args)
 	{
 		OCL_CHECK_KERNEL(kernel.setArg(idx, arg0), idx);
 		kernel_op(kernel, ++idx, args...);

@@ -1,0 +1,8 @@
+
+project(socl)
+
+set(SRC socl.cpp socl.h)
+
+include_directories( ${OCL_INC_DIR} )
+
+add_library(${PROJECT_NAME} STATIC ${SRC})

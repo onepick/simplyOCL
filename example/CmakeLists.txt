@@ -1,0 +1,10 @@
+
+project(example)
+
+set(SRC main.cpp)
+
+include_directories( ${OCL_INC_DIR} )
+link_directories(${OCL_LIBS} ${LIBRARY_OUTPUT_PATH}/${CMAKE_BUILD_TYPE})
+
+add_executable(${PROJECT_NAME} ${SRC})
+target_link_libraries(${PROJECT_NAME} OpenCL.lib socl.lib)
