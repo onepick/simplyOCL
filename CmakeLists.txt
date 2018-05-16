@@ -10,9 +10,9 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif(NOT CMAKE_BUILD_TYPE)
 
-set(OCL_DRIVERS "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v8.0")
-set(OCL_INC_DIR "${OCL_DRIVERS}/include")
-set(OCL_LIBS "${OCL_DRIVERS}/lib/x64")
+find_package(OpenCL REQUIRED)
+include_directories(${OpenCL_INCLUDE_DIRS})
+link_directories(${OpenCL_LIBRARY})
 
 add_subdirectory(socl)
 add_subdirectory(example)
